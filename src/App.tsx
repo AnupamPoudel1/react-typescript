@@ -2,6 +2,7 @@ import { useState } from "react"
 import Header from "./components/Header"
 import Section from "./components/Sections"
 import Counter from "./components/Counter"
+import List from "./components/List"
 
 const App = () => {
 
@@ -12,6 +13,7 @@ const App = () => {
       <Header title={"Hello World"} description={"This is just a normal title"} />
       <Section title="Different Title">This is a new section</Section>
       <Counter setCount={setCount}>The count is {count}</Counter>
+      <List items={["Anupam", "Akshar", "Ganesh"]} render={(item: string) => <span>{item}</span>} />
     </div>
   )
 }
