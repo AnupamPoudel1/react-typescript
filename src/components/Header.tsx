@@ -1,9 +1,9 @@
 import { ReactElement } from "react"
 
-type headingProps = { title: string }
+type headingProps = { title: string, description: string }
 
-const Header = ({ title }: headingProps): ReactElement => {
-    return <h1>{title}</h1>
+const Header = ({ title, description }: headingProps): ReactElement => {
+    return <h1>{title} - {description}</h1>
 }
 
 export default Header
