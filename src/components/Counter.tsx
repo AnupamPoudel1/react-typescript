@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useEffect, useState, MouseEvent, KeyboardEvent } from "react";
+import { ReactNode, useCallback, useEffect, useState, MouseEvent, KeyboardEvent, useMemo } from "react";
 
 type CounterProps = {
     setCount: React.Dispatch<React.SetStateAction<number>>,
@@ -9,6 +9,15 @@ interface User {
     id: number,
     username: string
 }
+
+type fibFunc = (n: number) => number;
+
+const fib: fibFunc = (n) => {
+    if (n < 2) return n
+    return fib(n - 1) + fib(n - 2);
+}
+
+const myNum: number = 5;
 
 const Counter = ({ setCount, children }: CounterProps) => {
 
@@ -22,7 +31,12 @@ const Counter = ({ setCount, children }: CounterProps) => {
         return () => console.log('Unmounting Users');
     }, [users]);
 
-    const addOne = useCallback((e: MouseEvent<HTMLButtonElement> | KeyboardEvent<HTMLButtonElement>): void => setCounter(prev => prev + 1), []);
+    // const addOne = useCallback((e: MouseEvent<HTMLButtonElement> | KeyboardEvent<HTMLButtonElement>): void => setCounter(prev => prev + 1), []);
+    
+    const addOne = useCallback((): void => setCounter(prev => prev + 1), []);
+
+    const fibonacci = useMemo(() => fib(myNum), [myNum]);
+    console.log(fibonacci);
 
     return (
         <>
