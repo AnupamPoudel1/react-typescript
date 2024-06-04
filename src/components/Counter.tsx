@@ -32,7 +32,7 @@ const Counter = ({ setCount, children }: CounterProps) => {
     }, [users]);
 
     // const addOne = useCallback((e: MouseEvent<HTMLButtonElement> | KeyboardEvent<HTMLButtonElement>): void => setCounter(prev => prev + 1), []);
-    
+
     const addOne = useCallback((): void => setCounter(prev => prev + 1), []);
 
     const fibonacci = useMemo(() => fib(myNum), [myNum]);
@@ -40,20 +40,22 @@ const Counter = ({ setCount, children }: CounterProps) => {
 
     return (
         <>
-            <div>
-                <h1>
+            <div className="py-2 px-4 m-2 flex justify-center items-center flex-col bg-white rounded-md">
+                <h1 className="text-red-800">
                     {children}
                 </h1>
-                <button onClick={() => setCount(prev => prev + 1)}>
-                    Count + 1
-                </button>
-                <button onClick={() => setCount(prev => prev - 1)}>
-                    Count - 1
-                </button>
+                <div className="flex justify-center items-center">
+                    <button onClick={() => setCount(prev => prev + 1)} className="py-2 px-4 m-2 bg-green-800 text-white">
+                        Count + 1
+                    </button>
+                    <button onClick={() => setCount(prev => prev - 1)} className="py-2 px-4 m-2 bg-red-800 text-white">
+                        Count - 1
+                    </button>
+                </div>
             </div>
-            <div>
-                <h1>{counter}</h1>
-                <button onClick={addOne}>Increment by 1</button>
+            <div className="flex justify-center items-center bg-yellow-300 px-4 py-2 m-2 rounded-md">
+                <h1 className="text-whtie py-2 px-4 bg-black">{counter}</h1>
+                <button onClick={addOne} className="py-2 px-4 m-2 bg-green-800 text-white">Increment by 1</button>
             </div>
         </>
     );
