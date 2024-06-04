@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useEffect, useState, MouseEvent, KeyboardEvent, useMemo } from "react";
+import { ReactNode, useCallback, useEffect, useState, useMemo, useRef } from "react";
 
 type CounterProps = {
     setCount: React.Dispatch<React.SetStateAction<number>>,
@@ -38,6 +38,11 @@ const Counter = ({ setCount, children }: CounterProps) => {
     const fibonacci = useMemo(() => fib(myNum), [myNum]);
     console.log(fibonacci);
 
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    console.log(inputRef?.current);
+    console.log(inputRef?.current?.value);
+
     return (
         <>
             <div className="py-2 px-4 m-2 flex justify-center items-center flex-col bg-white rounded-md">
@@ -56,6 +61,9 @@ const Counter = ({ setCount, children }: CounterProps) => {
             <div className="flex justify-center items-center bg-yellow-300 px-4 py-2 m-2 rounded-md">
                 <h1 className="text-whtie py-2 px-4 bg-black">{counter}</h1>
                 <button onClick={addOne} className="py-2 px-4 m-2 bg-green-800 text-white">Increment by 1</button>
+            </div>
+            <div className="px-4 py-2 m-2 text-black focus:border-none focus:outline-none">
+                <input type="text" ref={inputRef} className="p-2"/>
             </div>
         </>
     );
